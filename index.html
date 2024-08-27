@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão do tempo</title>
+    <!-- Link do css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Link javascript -->
+     <script src="js/index.js" defer></script>
+     <!-- link para fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">  
+    <!-- link favicon -->
+    <link rel="icon" href="img/previsao-do-tempo.png" type="image/x-icon">
+</head>
+<body>
+    <section class="container">
+        <video class="video " autoplay muted loop>
+            <source src="videos/video5.mp4" type="video/mp4">
+        </video>
+        <video class="video " autoplay muted loop>
+            <source src="videos/video4.mp4" type="video/mp4">
+        </video>
+        <video class="video " autoplay muted loop>
+            <source src="videos/video1.mp4" type="video/mp4">
+        </video>
+        <video class="video active" autoplay muted loop>
+            <source src="videos/video2.mp4" type="video/mp4">
+        </video>
+    </section>
+    <div class="caixa-maior">
+        <div class="flex">
+            <input class="input-cidade" type="text" placeholder="Digite o nome da Cidade:">
+            <button type="submit" class="botao" onclick="cliqueiNoBotao()">
+                <img class="img-busca" src="img/icons8-pesquisar-50.png" alt="icon-pesquisa">
+            </button>
+        </div>
+        <div class="caixa-media hide">
+            <h2 class="cidade">Cidade</h2>
+            <div class="caixa-menor">
+                <div class="previsao">
+                    <img class="img-previsao" src="https://openweathermap.org/img/wn/04n.png" alt="icone-tempo">
+                    <p class="texto-previsao item">Previsão</p>
+                </div>
+                <div class="graus">
+                    <p class="temp">17</p>
+                    <p class="item">Temperatura agora</p>
+                </div>
+                
+            </div>
+
+            <p class="umidade">Umidade:</p>
+        </div>
+
+    </div>
+    
+</body>
+</html>
