@@ -12,9 +12,25 @@ function colocarDadosNaTela(dados){
 
 
 async function buscarCidade(cidade){
-    const dados = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${key}&lang=pt_br&units=metric`).then( resposta => resposta.json())
-    colocarDadosNaTela(dados)
+    try {
+        const dados = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${key}&lang=pt_br&units=metric`)
+            .then(resposta => resposta.json());
+
+        if (dados.cod === "404") {
+            alert('Cidade não encontrada, Tente novamente');
+            
+            return;
+        }
+        mudarVideo()
+        hide()
+        colocarDadosNaTela(dados);
+
+    } catch (error) {
+        alert('Erro ao buscar dados. Por favor, tente novamente.');
+        console.error(error);
+    }
 }
+
 
 // slide
 let contador = 0;
@@ -46,11 +62,13 @@ function hide(){
 function cliqueiNoBotao(){
     const cidade = document.querySelector(".input-cidade").value;
     if( cidade === ""){
-        alert('Por favor, Insira uma cidade valida!!');
+        alert('Campo em branco');
     }else{
         buscarCidade(cidade);
-        hide()
-        mudarVideo()
-    }
+        document.querySelector(".input-cidade").value = "";
+        document.querySelector(".input-cidade").focus();
 
+         
+    }
+    
 }
