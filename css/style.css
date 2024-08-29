@@ -28,6 +28,9 @@ body{
     -webkit-appearance: none;
     appearance: none;
 }
+.video::-webkit-media-controls{
+    display: none;
+}
 .active{
     display: block;
 }
