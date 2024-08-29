@@ -25,6 +25,8 @@ body{
     background-position: center;
     z-index: 1;
     display: none;
+    -webkit-appearance: none;
+    appearance: none;
 }
 .active{
     display: block;
