@@ -6,7 +6,7 @@ Uma aplicação web dinâmica que consome uma API externa para fornecer dados me
 
 [Demonstração Online](#-demonstração) • [O Que Aprendi](#-o-que-aprendi-neste-projeto) • [Funcionalidades](#-funcionalidades) • [Tecnologias](#-tecnologias) • [Como Executar](#-como-executar) • [Autor](#-autor)
 
-[![Acessar Projeto](https://img.shields.io/badge/Acessar_Projeto-000?style=for-the-badge&logo=githubpages&logoColor=white)](https://matheus1289.github.io/previsao-tempo/)
+[![Acessar Projeto](https://img.shields.io/badge/Acessar_Projeto-000?style=for-the-badge&logo=netlify&logoColor=00C7B7)](https://openfreedev-tempo.netlify.app/)
 
 </div>
 
@@ -24,9 +24,9 @@ Uma aplicação web dinâmica que consome uma API externa para fornecer dados me
 
 A construção deste projeto foi um excelente exercício para integrar o front-end com serviços externos, focando nos seguintes aprendizados:
 
-* **Consumo de APIs RESTful:** Como fazer requisições HTTP para um serviço externo (como a OpenWeatherMap) para buscar dados reais em formato JSON.
+* **Consumo de APIs RESTful:** Como fazer requisições HTTP para um serviço externo para buscar dados reais em formato JSON.
 * **JavaScript Assíncrono:** Domínio prático de requisições assíncronas utilizando `Fetch API`, `async` e `await`, além do tratamento de *Promises*.
-* **Tratamento de Erros (Try/Catch):** Implementação de lógicas para lidar com cenários de falha, como quando o usuário digita o nome de uma cidade que não existe ou quando a API está fora do ar.
+* **Tratamento de Erros (Try/Catch):** Implementação de lógicas para lidar com cenários de falha, como quando o usuário digita o nome de uma cidade que não existe.
 * **Manipulação e Desestruturação de JSON:** Como extrair apenas as informações úteis (temperatura, umidade, velocidade do vento) do grande volume de dados retornado pela API.
 * **Atualização Dinâmica de Interface:** Modificação do DOM para exibir ícones dinâmicos correspondentes ao clima (sol, chuva, nublado) e injeção de dados na tela de forma fluida.
 
@@ -52,7 +52,7 @@ A construção deste projeto foi um excelente exercício para integrar o front-e
 ## ⚙️ Como Executar o Projeto
 
 ### Pré-requisitos
-Ter um navegador instalado e, caso tenha utilizado a API do OpenWeatherMap (ou similar), uma **API Key** válida (chave de acesso).
+Ter um navegador instalado e uma **API Key** válida (chave de acesso) do serviço meteorológico utilizado (ex: OpenWeatherMap).
 
 ### Passo a passo
 
