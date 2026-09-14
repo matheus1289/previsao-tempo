@@ -3,58 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Previsão do tempo</title>
-    <!-- Link do css -->
+    <title>Previsão do Tempo | Clima em Tempo Real</title>
+    <meta name="description" content="Confira a previsão do tempo em tempo real para qualquer cidade do mundo. Temperatura, umidade, vento, sensação térmica e previsão para 5 dias.">
+    <meta property="og:title" content="Previsão do Tempo | Clima em Tempo Real">
+    <meta property="og:description" content="Confira a previsão do tempo em tempo real para qualquer cidade do mundo.">
+    <meta property="og:type" content="website">
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Link javascript -->
-     <script src="js/index.js" defer></script>
-     <!-- link para fonts -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">  
-    <!-- link favicon -->
+    <!-- JavaScript -->
+    <script src="js/index.js" defer></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
     <link rel="icon" href="img/previsao-do-tempo.png" type="image/x-icon">
 </head>
 <body>
-    <section class="container">
-        <video class="video "playsinline  autoplay muted loop>
+    <!-- Video Background -->
+    <section class="container" aria-hidden="true">
+        <video class="video" playsinline autoplay muted loop>
             <source src="videos/video5.mp4" type="video/mp4">
         </video>
-        <video class="video " playsinline autoplay muted loop>
+        <video class="video" playsinline autoplay muted loop>
             <source src="videos/video4.mp4" type="video/mp4">
         </video>
-        <video class="video" playsinline  autoplay muted loop>
+        <video class="video" playsinline autoplay muted loop>
             <source src="videos/video1.mp4" type="video/mp4">
         </video>
-        <video class="video active" playsinline  autoplay muted loop>
+        <video class="video active" playsinline autoplay muted loop>
             <source src="videos/video2.mp4" type="video/mp4">
         </video>
+        <div class="video-overlay"></div>
     </section>
-    <div class="caixa-maior">
-        <div class="flex">
-            <input class="input-cidade" type="text" placeholder="Digite o nome da Cidade:">
-            <button type="submit" class="botao" onclick="cliqueiNoBotao()">
-                <img class="img-busca" src="img/icons8-pesquisar-50.png" alt="icon-pesquisa">
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container" role="alert" aria-live="polite"></div>
+
+    <!-- Main App -->
+    <main class="caixa-maior" role="main">
+        <!-- Search Bar -->
+        <div class="flex" role="search">
+            <label for="input-cidade" class="sr-only">Nome da cidade</label>
+            <input
+                id="input-cidade"
+                class="input-cidade"
+                type="text"
+                placeholder="Buscar cidade..."
+                autocomplete="off"
+                aria-label="Digite o nome da cidade"
+            >
+            <button type="button" class="botao" id="btn-buscar" aria-label="Buscar previsão do tempo" title="Buscar">
+                <img class="img-busca" src="img/icons8-pesquisar-50.png" alt="Buscar">
+            </button>
+            <button type="button" class="botao-geo" id="btn-geo" aria-label="Usar minha localização" title="Usar minha localização">
+                📍
             </button>
         </div>
-        <div class="caixa-media hide">
-            <h2 class="cidade">Cidade</h2>
-            <div class="caixa-menor">
-                <div class="previsao">
-                    <img class="img-previsao" src="https://openweathermap.org/img/wn/04n.png" alt="icone-tempo">
-                    <p class="texto-previsao item">Previsão</p>
-                </div>
-                <div class="graus">
-                    <p class="temp">17</p>
-                    <p class="item">Temperatura agora</p>
-                </div>
-                
-            </div>
 
-            <p class="umidade">Umidade:</p>
+        <!-- Loading -->
+        <div class="loading-container" id="loading" aria-label="Carregando">
+            <div class="spinner"></div>
         </div>
 
-    </div>
-    
+        <!-- Weather Results -->
+        <section class="caixa-media hide" id="resultado" aria-label="Resultado da previsão">
+            <h1 class="cidade">Cidade</h1>
+            <p class="data-atual" id="data-atual"></p>
+
+            <div class="caixa-menor">
+                <div class="previsao">
+                    <img class="img-previsao" src="https://openweathermap.org/img/wn/04n@2x.png" alt="Ícone do tempo" width="100" height="100">
+                    <p class="texto-previsao">Previsão</p>
+                </div>
+                <div class="graus">
+                    <p class="temp">--°C</p>
+                    <span class="temp-label">Temperatura agora</span>
+                </div>
+            </div>
+
+            <!-- Extra Data -->
+            <div class="dados-extras">
+                <div class="dado-item">
+                    <span class="dado-icon">💧</span>
+                    <span class="dado-valor umidade-valor">--%</span>
+                    <span class="dado-label">Umidade</span>
+                </div>
+                <div class="dado-item">
+                    <span class="dado-icon">💨</span>
+                    <span class="dado-valor vento-valor">-- km/h</span>
+                    <span class="dado-label">Vento</span>
+                </div>
+                <div class="dado-item">
+                    <span class="dado-icon">🌡️</span>
+                    <span class="dado-valor sensacao-valor">--°C</span>
+                    <span class="dado-label">Sensação</span>
+                </div>
+            </div>
+
+            <!-- 5 Day Forecast -->
+            <div class="previsao-5dias" id="previsao-5dias">
+                <p class="previsao-5dias-titulo">Próximos 5 dias</p>
+                <div class="previsao-5dias-lista" id="previsao-5dias-lista">
+                    <!-- Filled dynamically -->
+                </div>
+            </div>
+
+            <!-- Legacy element kept for compatibility -->
+            <p class="umidade"></p>
+        </section>
+    </main>
+
 </body>
 </html>
